@@ -4,7 +4,7 @@ interface IGetAllProps {
   path: string;
   params: {
     page: string;
-    size: string | 20;
+    size?: string;
     search?: string;
     genres?: string;
     sortBy?: string;
@@ -13,7 +13,8 @@ interface IGetAllProps {
 }
 
 export const getAll = async ({ path, params }: IGetAllProps) => {
-  console.log(params);
-  //const { data: response } = await api.get(path);
-  //return response.data;
+  const defaultParams = { ...params, size: params.size || '20' }
+
+  const { data: response } = await api.get(path, { params: defaultParams });
+  console.log(response.data);
 };

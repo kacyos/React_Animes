@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { getAll } from "../service/requests";
 
-const pageSize = "20";
-
 export const Home = () => {
   const [currentPage, setCurrentPage] = useState("1");
 
   const getAllAnimes = async () => {
-    getAll({
-      path: "animes",
+  await  getAll({
+      path: "anime",
       params: { page: currentPage },
     });
   };
