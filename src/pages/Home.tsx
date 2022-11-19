@@ -1,17 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAll } from "../service/requests";
-import {
-  AppBar,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Box,
-  Toolbar,
-  Typography,
-  Grid,
-  Paper,
-} from "@mui/material";
+import { Grid } from "@mui/material";
+import { Card } from "../components/Card";
 
 type AnimeProps = {
   _id: string;
@@ -37,7 +27,6 @@ export const Home = () => {
     const { data, meta } = await getAll({ path: "anime" });
     setMeta(meta);
     setAnimes(data);
-    console.log(data);
   };
 
   useEffect(() => {
@@ -46,19 +35,6 @@ export const Home = () => {
 
   return (
     <>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            MUI
-          </Typography>
-        </Toolbar>
-      </AppBar>
-
       <Grid
         container
         flexWrap="wrap"
@@ -69,36 +45,7 @@ export const Home = () => {
       >
         {animes.map((anime) => (
           <Grid item sx={{ cursor: "pointer", zoom: "2px" }}>
-            <Paper
-              elevation={8}
-              sx={{ width: "220px", height: "340px", padding: "8px 8px" }}
-            >
-              <Box
-                display="flex"
-                justifyContent="center"
-                mx="auto"
-                height="80%"
-              >
-                <Box
-                  component="img"
-                  src={anime.image}
-                  alt={anime.title}
-                  sx={{ objectFit: "fill" }}
-                  borderRadius={1}
-                  loading="lazy"
-                />
-              </Box>
-              <Box
-                height="20%"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Typography textAlign="center" variant="subtitle1">
-                  {anime.title}
-                </Typography>
-              </Box>
-            </Paper>
+            <Card image={anime.image} alt={anime.title} text={anime.title} />
           </Grid>
         ))}
       </Grid>
