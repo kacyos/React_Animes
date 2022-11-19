@@ -1,7 +1,13 @@
-import { useState } from "react";
 import { Home } from "./pages/Home";
+import CssBaseline from "@mui/material/CssBaseline";
+
 function App() {
-  return <Home />;
+  return (
+    <>
+      <CssBaseline />
+      <Home />
+    </>
+  );
 }
 
 export default App;
