@@ -4,21 +4,24 @@ import styled from "styled-components";
 interface StyledPaperProps extends PaperProps {
   bgColor?: string;
   width?: string;
-  heigth?: string;
-  imgWidth?: string;
+  height?: string;
+  p?: string;
 }
 
 export const StyledPaper = styled(Paper)<StyledPaperProps>((props) => ({
   backgroundColor: props.bgColor,
   width: props.width,
-  height: props.heigth,
+  height: props.height,
+  padding: props.p || "8px",
+  overflow: "hidden",
+  marginTop: "20px",
 
-  "& image.MuiBox-root": {
-    height: props.imgWidth,
-  },
+  cursor: "pointer",
+  background: "#e3f2fd",
+  transition: "all .5s ease",
 
-  "& img.MuiBox-root": {
-    height: props.imgWidth,
+  ":hover": {
+    backgroundColor: "#bbdefb",
   },
 }));
 

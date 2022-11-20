@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAll } from "../service/requests";
 import { Grid } from "@mui/material";
 import { Card } from "../components/Card";
+import { NavBar } from "../components/NavBar";
 
 type AnimeProps = {
   _id: string;
@@ -43,9 +44,15 @@ export const Home = () => {
         gap={4}
         mb={4}
       >
+        <NavBar />
         {animes.map((anime) => (
-          <Grid item sx={{ cursor: "pointer", zoom: "2px" }}>
-            <Card image={anime.image} alt={anime.title} text={anime.title} />
+          <Grid item>
+            <Card
+              image={anime.image}
+              alt={anime.title}
+              text={anime.title}
+              sub={`Episodes: ${anime.episodes}`}
+            />
           </Grid>
         ))}
       </Grid>
